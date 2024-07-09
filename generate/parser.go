@@ -576,6 +576,27 @@ func schemaOfField(member spec.Member) swaggerSchemaObject {
 				Items: (*swaggerItemsObject)(&core),
 			},
 		}
+	case reflect.Map:
+		childType := strings.Split(member.Type.Name(), "]")[1]
+		childKind := swaggerMapTypes[childType]
+		fmt.Println("childKind", childKind, "childType", childType)
+
+		ftype, format, ok := primitiveSchema(childKind, childType)
+		if ok {
+			core = schemaCore{Type: ftype, Format: format}
+		} else {
+			core = schemaCore{Type: ft.String(), Format: "UNKNOWN"}
+		}
+
+		ret = swaggerSchemaObject{
+			schemaCore: schemaCore{
+				Type: "object",
+			},
+			AdditionalProperties: &swaggerSchemaObject{
+				schemaCore: core,
+			},
+		}
+
 	case reflect.Invalid:
 		// 判断是否数组
 		if strings.HasPrefix(member.Type.Name(), "[]") {
