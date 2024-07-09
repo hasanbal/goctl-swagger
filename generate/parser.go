@@ -463,9 +463,9 @@ func renderReplyAsDefinition(d swaggerDefinitionsObject, m messageMap, p []spec.
 					continue
 				}
 				if len(tag.Options) == 0 {
-					if !contains(schema.Required, tag.Name) && tag.Name != "required" {
-						schema.Required = append(schema.Required, tag.Name)
-					}
+					// if !contains(schema.Required, tag.Name) && tag.Name != "required" {
+					// 	schema.Required = append(schema.Required, tag.Name)
+					// }
 					continue
 				}
 
@@ -579,7 +579,6 @@ func schemaOfField(member spec.Member) swaggerSchemaObject {
 	case reflect.Map:
 		childType := strings.Split(member.Type.Name(), "]")[1]
 		childKind := swaggerMapTypes[childType]
-		fmt.Println("childKind", childKind, "childType", childType)
 
 		ftype, format, ok := primitiveSchema(childKind, childType)
 		if ok {
