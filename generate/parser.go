@@ -379,8 +379,8 @@ func renderStruct(member spec.Member) swaggerParameterObject {
 				if len(segs) == 2 {
 					min, max, ok := parseRangeOption(segs[1])
 					if ok {
-						sp.Schema.Minimum = min
-						sp.Schema.Maximum = max
+						sp.Minimum = &min
+						sp.Maximum = &max
 					}
 				}
 			}
@@ -546,6 +546,7 @@ func schemaOfField(member spec.Member) swaggerSchemaObject {
 			}
 
 		} else {
+			fmt.Println("refTypeName", refTypeName)
 			core = schemaCore{
 				Ref: "#/definitions/" + refTypeName,
 			}

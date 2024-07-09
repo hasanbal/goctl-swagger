@@ -163,6 +163,8 @@ type swaggerParameterObject struct {
 	Default          string              `json:"default,omitempty"`
 	MinItems         *int                `json:"minItems,omitempty"`
 	Example          string              `json:"example,omitempty"`
+	Minimum          *float64            `json:"minimum,omitempty"`
+	Maximum          *float64            `json:"maximum,omitempty"`
 
 	// Or you can explicitly refer to another type. If this is defined all
 	// other fields should be empty
