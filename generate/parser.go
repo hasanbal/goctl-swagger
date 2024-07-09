@@ -546,7 +546,6 @@ func schemaOfField(member spec.Member) swaggerSchemaObject {
 			}
 
 		} else {
-			fmt.Println("refTypeName", refTypeName)
 			core = schemaCore{
 				Ref: "#/definitions/" + refTypeName,
 			}
