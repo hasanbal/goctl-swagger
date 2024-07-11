@@ -469,7 +469,7 @@ func renderReplyAsDefinition(d swaggerDefinitionsObject, m messageMap, p []spec.
 					continue
 				}
 
-				required := true
+				required := false
 				for _, option := range tag.Options {
 					// case strings.HasPrefix(option, defaultOption):
 					// case strings.HasPrefix(option, optionsOption):
