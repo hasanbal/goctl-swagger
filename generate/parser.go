@@ -463,13 +463,13 @@ func renderReplyAsDefinition(d swaggerDefinitionsObject, m messageMap, p []spec.
 					continue
 				}
 				if len(tag.Options) == 0 {
-					// if !contains(schema.Required, tag.Name) && tag.Name != "required" {
-					// 	schema.Required = append(schema.Required, tag.Name)
-					// }
+					if !contains(schema.Required, tag.Name) && tag.Name != "required" {
+						schema.Required = append(schema.Required, tag.Name)
+					}
 					continue
 				}
 
-				required := false
+				required := true
 				for _, option := range tag.Options {
 					// case strings.HasPrefix(option, defaultOption):
 					// case strings.HasPrefix(option, optionsOption):
